@@ -44,4 +44,4 @@ plt.show()
 <img title="a title" alt="Alt text" src="problem1.pmg">
 
 
-![Alt text]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://github.com/Cholponai29/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/problem1.png) "a problem1")
+![Alt text](problem1.png) "a problem1")
