@@ -1,5 +1,5 @@
 
-
+```
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -38,6 +38,8 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+```
+
 
 
 <img title="a title" alt="Alt text" src="problem1.pmg">
