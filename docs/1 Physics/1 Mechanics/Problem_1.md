@@ -42,7 +42,7 @@ plt.show()
 
 
 
-<img title="a title" alt="Alt text" src="problem1.pmg">
+
 
 
 ![Alt text](problem1.png) "a problem1")
