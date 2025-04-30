@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Projectile Range Analysis as a Function of Launch Angle - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Projectile Range Analysis as a Function of Launch Angle";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -46,7 +46,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal current">1 Mechanics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Projectile Range Analysis as a Function of Launch Angle</a>
 <ul class="current">
 </ul>
 </li>
@@ -163,7 +163,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Projectile Range Analysis as a Function of Launch Angle</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,9 +171,41 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<p>hi.
-.</p>
+<h1 id="projectile-range-analysis-as-a-function-of-launch-angle">Projectile Range Analysis as a Function of Launch Angle</h1>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<h1 id="constants">Constants</h1>
+<p>g = 9.81  # gravitational acceleration (m/s^2)</p>
+<p>def calculate_range(v0, theta_deg, h0=0):
+    """
+    Calculate the range of a projectile launched at angle theta_deg
+    with initial speed v0 and initial height h0.
+    """
+    theta = np.radians(theta_deg)
+    if h0 == 0:
+        # Simplified range formula when launch height is 0
+        R = (v0<strong>2 * np.sin(2 * theta)) / g
+    else:
+        # Generalized formula considering launch height h0
+        R = (v0 * np.cos(theta)) * (
+            v0 * np.sin(theta) + np.sqrt((v0 * np.sin(theta))</strong>2 + 2 * g * h0)
+        ) / g
+    return R</p>
+<h1 id="simulation-parameters">Simulation parameters</h1>
+<p>v0_values = [10, 20, 30]  # different initial velocities
+angles = np.linspace(0, 90, 500)</p>
+<h1 id="plot-range-vs-angle-for-different-initial-velocities">Plot range vs angle for different initial velocities</h1>
+<p>plt.figure(figsize=(10, 6))
+for v0 in v0_values:
+    ranges = [calculate_range(v0, angle) for angle in angles]
+    plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')</p>
+<p>plt.title('Projectile Range vs Launch Angle')
+plt.xlabel('Launch Angle (degrees)')
+plt.ylabel('Range (m)')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
