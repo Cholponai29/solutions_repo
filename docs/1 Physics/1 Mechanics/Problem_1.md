@@ -39,3 +39,7 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+
+
+![Alt text]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://github.com/Cholponai29/solutions_repo/blob/main/docs/1%20Physics/1%20Mechanics/problem1.png) "a problem1")
