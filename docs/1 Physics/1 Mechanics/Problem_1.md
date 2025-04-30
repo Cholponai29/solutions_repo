@@ -1,9 +1,9 @@
-# Projectile Range Analysis as a Function of Launch Angle
+
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Constants
+
 g = 9.81  # gravitational acceleration (m/s^2)
 
 def calculate_range(v0, theta_deg, h0=0):
@@ -22,11 +22,10 @@ def calculate_range(v0, theta_deg, h0=0):
         ) / g
     return R
 
-# Simulation parameters
 v0_values = [10, 20, 30]  # different initial velocities
 angles = np.linspace(0, 90, 500)
 
-# Plot range vs angle for different initial velocities
+
 plt.figure(figsize=(10, 6))
 for v0 in v0_values:
     ranges = [calculate_range(v0, angle) for angle in angles]
