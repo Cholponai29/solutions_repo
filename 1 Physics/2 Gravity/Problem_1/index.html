@@ -55,8 +55,6 @@
 <li class="toctree-l1 current"><a class="reference internal current">2 Gravity</a>
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
-<ul class="current">
-</ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
 </li>
@@ -171,36 +169,43 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>...
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="constants">Constants</h1>
-<p>G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
-M = 5.972e24     # Mass of Earth (kg)</p>
-<h1 id="generate-a-range-of-orbital-radii-in-meters">Generate a range of orbital radii (in meters)</h1>
-<p>radii = np.linspace(7e6, 4.2e7, 100)  # from 7,000 km to 42,000 km</p>
-<h1 id="calculate-orbital-periods-for-circular-orbits">Calculate orbital periods for circular orbits</h1>
-<p>def orbital_period(r, M):
-    return 2 * np.pi * np.sqrt(r**3 / (G * M))</p>
-<p>periods = orbital_period(radii, M)</p>
-<h1 id="plot-t2-vs-r3">Plot T^2 vs r^3</h1>
-<p>T_squared = periods<strong>2
-r_cubed = radii</strong>3</p>
-<p>plt.figure(figsize=(8, 5))
-plt.plot(r_cubed, T_squared, label=r"<span class="arithmatex">\(T^2\)</span> vs <span class="arithmatex">\(r^3\)</span>", color='navy')
-plt.xlabel(r"Orbital Radius Cubed <span class="arithmatex">\(r^3\)</span> (m<span class="arithmatex">\(^3\)</span>)")
-plt.ylabel(r"Orbital Period Squared <span class="arithmatex">\(T^2\)</span> (s<span class="arithmatex">\(^2\)</span>)")
-plt.title("Kepler's Third Law: <span class="arithmatex">\(T^2 \propto r^3\)</span>")
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M = 5.972e24     # Mass of Earth (kg)
+
+# Generate a range of orbital radii (in meters)
+radii = np.linspace(7e6, 4.2e7, 100)  # from 7,000 km to 42,000 km
+
+# Calculate orbital periods for circular orbits
+def orbital_period(r, M):
+    return 2 * np.pi * np.sqrt(r**3 / (G * M))
+
+periods = orbital_period(radii, M)
+
+# Plot T^2 vs r^3
+T_squared = periods**2
+r_cubed = radii**3
+
+plt.figure(figsize=(8, 5))
+plt.plot(r_cubed, T_squared, label=r"$T^2$ vs $r^3$", color='navy')
+plt.xlabel(r"Orbital Radius Cubed $r^3$ (m$^3$)")
+plt.ylabel(r"Orbital Period Squared $T^2$ (s$^2$)")
+plt.title("Kepler's Third Law: $T^2 \propto r^3$")
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
-plt.show()</p>
-<h1 id="optional-show-a-linear-fit-to-confirm-proportionality">Optional: Show a linear fit to confirm proportionality</h1>
-<p>from scipy.stats import linregress
-slope, intercept, r_value, *_ = linregress(r_cubed, T_squared)</p>
-<p>print(f"Fitted slope (should be ~4π²/GM): {slope:.3e}")
+plt.show()
+
+# Optional: Show a linear fit to confirm proportionality
+from scipy.stats import linregress
+slope, intercept, r_value, *_ = linregress(r_cubed, T_squared)
+
+print(f"Fitted slope (should be ~4π²/GM): {slope:.3e}")
 print(f"R² value: {r_value**2:.5f} (should be close to 1)")
-...</p>
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
