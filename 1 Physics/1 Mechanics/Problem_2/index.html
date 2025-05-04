@@ -49,8 +49,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
-<ul class="current">
-</ul>
 </li>
 </ul>
 </li>
@@ -171,69 +169,82 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>import numpy as np
+<pre><code>import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp</p>
-<h1 id="system-parameters">System Parameters</h1>
-<p>gamma = 0.2         # Damping coefficient
+from scipy.integrate import solve_ivp
+
+# System Parameters
+gamma = 0.2         # Damping coefficient
 omega0 = 1.0        # Natural frequency of the pendulum
 A = 1.2             # Amplitude of the external driving force
-omega_d = 2/3       # Driving frequency</p>
-<h1 id="time-span-for-simulation">Time span for simulation</h1>
-<p>t_max = 100
-t_points = np.linspace(0, t_max, 10000)</p>
-<h1 id="differential-equations-for-the-forced-damped-pendulum">Differential equations for the forced damped pendulum</h1>
-<p>def forced_damped_pendulum(t, y):
+omega_d = 2/3       # Driving frequency
+
+# Time span for simulation
+t_max = 100
+t_points = np.linspace(0, t_max, 10000)
+
+# Differential equations for the forced damped pendulum
+def forced_damped_pendulum(t, y):
     theta, omega = y
     dtheta_dt = omega
     domega_dt = -gamma * omega - omega0**2 * np.sin(theta) + A * np.cos(omega_d * t)
-    return [dtheta_dt, domega_dt]</p>
-<h1 id="initial-conditions-angle-angular-velocity">Initial conditions: [angle, angular velocity]</h1>
-<p>y0 = [0.2, 0.0]</p>
-<h1 id="solve-the-system-using-runge-kutta-method">Solve the system using Runge-Kutta method</h1>
-<p>solution = solve_ivp(forced_damped_pendulum, [0, t_max], y0, t_eval=t_points, method='RK45')</p>
-<h1 id="extract-solution">Extract solution</h1>
-<p>theta = solution.y[0]
+    return [dtheta_dt, domega_dt]
+
+# Initial conditions: [angle, angular velocity]
+y0 = [0.2, 0.0]
+
+# Solve the system using Runge-Kutta method
+solution = solve_ivp(forced_damped_pendulum, [0, t_max], y0, t_eval=t_points, method='RK45')
+
+# Extract solution
+theta = solution.y[0]
 omega = solution.y[1]
-time = solution.t</p>
-<h1 id="normalize-angle-to-be-within-for-better-visualization">Normalize angle to be within (-π, π) for better visualization</h1>
-<p>theta_mod = ((theta + np.pi) % (2 * np.pi)) - np.pi</p>
-<h1 id="plot-angle-over-time">Plot: Angle over time</h1>
-<p>plt.figure(figsize=(10, 4))
+time = solution.t
+
+# Normalize angle to be within (-π, π) for better visualization
+theta_mod = ((theta + np.pi) % (2 * np.pi)) - np.pi
+
+# Plot: Angle over time
+plt.figure(figsize=(10, 4))
 plt.plot(time, theta_mod)
 plt.xlabel('Time (s)')
 plt.ylabel('Angle θ (rad)')
 plt.title('Forced Damped Pendulum: Angle over Time')
 plt.grid(True)
 plt.tight_layout()
-plt.show()</p>
-<h1 id="plot-phase-portrait-vs">Plot: Phase portrait (θ vs ω)</h1>
-<p>plt.figure(figsize=(6, 6))
+plt.show()
+
+# Plot: Phase portrait (θ vs ω)
+plt.figure(figsize=(6, 6))
 plt.plot(theta_mod, omega, lw=0.5)
 plt.xlabel('θ (rad)')
 plt.ylabel('ω (rad/s)')
 plt.title('Phase Portrait')
 plt.grid(True)
 plt.tight_layout()
-plt.show()</p>
-<h1 id="plot-poincare-section-samples-taken-once-every-driving-period">Plot: Poincaré section (samples taken once every driving period)</h1>
-<p>T_drive = 2 * np.pi / omega_d
+plt.show()
+
+# Plot: Poincaré section (samples taken once every driving period)
+T_drive = 2 * np.pi / omega_d
 poincare_times = np.arange(0, t_max, T_drive)
 theta_poincare = []
-omega_poincare = []</p>
-<p>for t_cross in poincare_times:
+omega_poincare = []
+
+for t_cross in poincare_times:
     idx = np.searchsorted(time, t_cross)
     if idx &lt; len(time):
         theta_poincare.append(theta_mod[idx])
-        omega_poincare.append(omega[idx])</p>
-<p>plt.figure(figsize=(6, 6))
+        omega_poincare.append(omega[idx])
+
+plt.figure(figsize=(6, 6))
 plt.scatter(theta_poincare, omega_poincare, s=5, color='red')
 plt.xlabel('θ (rad)')
 plt.ylabel('ω (rad/s)')
 plt.title('Poincaré Section')
 plt.grid(True)
 plt.tight_layout()
-plt.show()</p>
+plt.show()
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
