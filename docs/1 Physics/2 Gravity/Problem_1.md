@@ -1,4 +1,4 @@
-...
+```
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -35,4 +35,4 @@ slope, intercept, r_value, *_ = linregress(r_cubed, T_squared)
 
 print(f"Fitted slope (should be ~4π²/GM): {slope:.3e}")
 print(f"R² value: {r_value**2:.5f} (should be close to 1)")
-...
+```
