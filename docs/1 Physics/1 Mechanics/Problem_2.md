@@ -1,3 +1,4 @@
+```
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -73,4 +74,5 @@ plt.title('Poincaré Section')
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+```
 
